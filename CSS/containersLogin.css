@@ -1,0 +1,29 @@
+header{
+    margin-top: 0.35%;
+    margin-left: 10.35%;
+    margin-right: 10.35%;
+}
+
+#footer{
+    background-color: #010825;
+    margin-top: 2.5%;
+    margin-left: 10.35%;
+    margin-right: 10.35%;
+    text-align: center;
+}
+
+.conteinerLogin{
+    background-color: #0e0468;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    transition: transform 0.2s;
+    width: 500px;
+    text-align: center;
+    margin-left: 38%;
+    margin-top: 2%;
+}
+
+.conteinerLogin h1{
+    color: #a0af4c;
+}

@@ -1,0 +1,53 @@
+.divFormulario{
+    margin-top: 30px;
+}
+
+.divLabel{
+    display: inline-block;
+    width: 49%;
+    text-align: end;
+}
+
+.divInput{
+    display: inline-block;
+    width: 49%;
+}
+
+.labelFormulario{
+    margin: 70px;
+    font-size: 25px;
+}
+
+.inputFormulario{
+    font-size: 25px;
+}
+
+.divRadio{
+    display: inline-block; 
+    vertical-align: middle;
+    text-align: left;
+}
+
+.inputRadio, .inputRadio{
+    font-size: 20px;
+}
+
+.divCheckbox{
+    display: inline-block; 
+    vertical-align: middle;
+    text-align: left;
+}
+
+.buttonFormulario{
+    width: 225px; 
+    height: 40px; 
+    margin: 50px;
+}
+
+.contraseniaInput{
+    margin-right: 100px;
+}
+
+#divButton{
+    text-align:center;
+}

@@ -1,0 +1,29 @@
+#tituloFooter{
+    text-align: center;
+    font-size: 20px;
+}
+
+.textoFooter{
+    font-size: 12px;
+    margin-left: 100px;
+    margin-right: 100px;
+    text-align: center;
+}
+
+.logosFooter{
+    height: 30px;
+    margin-top: 10px;
+}
+
+.divFooter{
+    text-align: center;
+    width: 33%;
+    height: 100%;
+    display: inline-block;
+}
+
+#divAutor{
+
+    margin-top: 10px;
+    margin-bottom: 50px;
+}

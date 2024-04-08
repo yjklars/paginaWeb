@@ -1,0 +1,24 @@
+header{
+    background-color: #020B40;
+    margin-top: 0.35%;
+    margin-left: 10.35%;
+    margin-right: 10.35%;
+}
+
+.formulario{
+    display: grid;
+    grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto;
+    margin-top: 0.35%;
+    margin-left: 10.35%;
+    margin-right: 10.35%;
+    width: 80%;
+
+}
+
+#footer{
+    background-color: #010825;
+    margin-top: 2.5%;
+    margin-left: 10.35%;
+    margin-right: 10.35%;
+    text-align: center;
+}
