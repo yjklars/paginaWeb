@@ -1,18 +1,50 @@
-header{
-    margin-top: 0.35%;
-    margin-left: 10.35%;
-    margin-right: 10.35%;
-}
-
 .divIndex{
     display: grid;
-    grid-template-columns: auto auto auto;
-    grid-template-rows: auto;
-    background-color: #030114;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto auto;
+    background-color: #010825;
     text-align: center;
     margin-top: 2.5%;
     margin-left: 10.35%;
     margin-right: 10.35%;
+    border-radius: 30px;
+}
+
+#divseccion1imagen1{
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+#divseccion1video{
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 3;
+    grid-row-end: 3;
+}
+#divseccion1imagen2{
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 2;
+    grid-row-end: 2;
+}
+#seccion1text1{
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+#seccion1text2{
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 3;
+}
+#seccion1text3{
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 2;
 }
 
 #seccionIndex{
@@ -23,12 +55,11 @@ header{
     margin-left: 10.35%;
     margin-right: 10.35%;
     text-align: center;
+    border-radius: 30px;
 }
 
 #footer{
     background-color: #010825;
     margin-top: 2.5%;
-    margin-left: 10.35%;
-    margin-right: 10.35%;
     text-align: center;
 }

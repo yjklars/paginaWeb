@@ -2,6 +2,10 @@
     margin-left: 60px;
     margin-top: 20px;
     margin-bottom: 20px;
+    margin-right: 30px;
+}
+#divImagenSection img{
+    height: 600px;
 }
 #tituloIndex{
     font-size: 40px;
