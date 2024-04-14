@@ -25,4 +25,11 @@
 #divAutor{
     margin-top: 10px;
     margin-bottom: 50px;
+    text-align: center;
+}
+
+#footer{
+    background-color: #010825;
+    margin-top: 2.5%;
+    text-align: center;
 }

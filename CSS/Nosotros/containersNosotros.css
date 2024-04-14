@@ -74,8 +74,6 @@
 .footerNosotros{
     background-color: #010825;
     margin-top: 3%;
-    margin-left: 10.35%;
-    margin-right: 10.35%;
     padding: 30px
 }
 
@@ -83,8 +81,4 @@
     background-color: #010825;
     text-align: center;
     height: 50px;
-    margin-left: 10.35%;
-    margin-right: 10.35%;
-    margin-top: 10px;
-    margin-bottom: 50px;
 }
