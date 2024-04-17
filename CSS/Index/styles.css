@@ -1,6 +1,6 @@
-@import "/CSS/commons.css";
+@import "../commons.css";
 @import "containers.css";
-@import "/CSS/header.css";
+@import "../header.css";
 @import "seccion1index.css";
 @import "seccion2index.css";
-@import "/CSS/footer.css";
+@import "../footer.css";

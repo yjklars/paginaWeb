@@ -1,4 +1,4 @@
-@import "/CSS/commons.css";
-@import "/CSS/header.css";
+@import "../commons.css";
+@import "../header.css";
 @import "containersLogin.css";
-@import "/CSS/footer.css";
+@import "../footer.css";
