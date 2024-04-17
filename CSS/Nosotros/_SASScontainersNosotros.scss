@@ -1,0 +1,110 @@
+$tipoDisplay: grid;
+$colorFondoA: #030114;
+$colorFondoB: #010825;
+$colorFondoC: #000000;
+$tipoAlineacion: center;
+
+@mixin grid5x5{
+    grid-template-columns: auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto;
+}
+@mixin grid1x4{
+    grid-template-columns: auto auto auto auto;
+}
+@mixin grid1x6{
+    grid-template-columns: auto auto auto auto auto auto;
+}
+
+@mixin marginTopBottomPorcent($mTop,$mBottom){
+    margin-top: $mTop;
+    margin-bottom: $mBottom;
+}
+
+@mixin marginLeftRightPorcent($mLeft,$mRight){
+    margin-left: $mLeft;
+    margin-right: $mRight;
+}
+@mixin paddingPixel($paddinPx){
+    padding: $paddinPx;
+}
+
+
+.containerNosotros{
+    display: $tipoDisplay;
+    background-color: $colorFondoA;
+    @include grid5x5();
+    @include marginTopBottomPorcent(0.35%,0%);
+    @include marginLeftRightPorcent(10.35%,10.35%);
+    @include paddingPixel(30px);
+}
+
+.informacionPrincipal{
+    background-color: $colorFondoB;
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 5;
+    margin: 10px;
+}
+.informacionAsideSuperior{
+    background-color: $colorFondoC;
+    grid-column-start: 5;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    text-align: $tipoAlineacion;
+    margin: 10px;
+}
+
+.informacionAsideInferior{
+    background-color: $colorFondoC;
+    grid-column-start: 5;
+    grid-column-end: 5;
+    grid-row-start: 3;
+    grid-row-end: 5;
+    text-align: $tipoAlineacion;
+    margin: 10px;
+}
+
+.containerUsuarios{
+    display: $tipoDisplay;
+    background-color:$colorFondoA;
+    @include grid1x4();
+    @include marginTopBottomPorcent(0.35%,0%);
+    @include marginLeftRightPorcent(10.35%,10.35%);
+    @include paddingPixel(50px);
+}
+
+.divUsuarios{
+    background-color: $colorFondoC;
+    text-align: $tipoAlineacion;
+    margin: 20px;
+}
+
+.containerInformacion{
+    background-color: $colorFondoB;
+    @include marginTopBottomPorcent(0.35%,0%);
+    @include marginLeftRightPorcent(10.35%,10.35%);
+    @include paddingPixel(30px);
+}
+
+.containerIlustracion{
+    display: $tipoDisplay;
+    @include grid1x6();
+    background-color: $colorFondoB;
+    @include marginTopBottomPorcent(3%,0%);
+    @include marginLeftRightPorcent(10.35%,10.35%);
+    @include paddingPixel(30px);
+}
+
+.footerNosotros{
+    background-color: $colorFondoB;
+    @include marginTopBottomPorcent(3%,0%);
+    @include paddingPixel(30px);
+}
+
+#divAutor{
+    background-color: $colorFondoB;
+    text-align: $tipoAlineacion;
+    height: 50px;
+}
