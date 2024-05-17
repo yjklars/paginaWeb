@@ -1,3 +1,15 @@
+<?php
+include("conexion.php");
+$con=conectar();
+
+$id=$_GET['id'];
+
+$sql="SELECT * FROM usuario WHERE id='$id'";
+$query=mysqli_query($con,$sql);
+$row=mysqli_fetch_array($query);
+$intereses=explode(',',$row['areaInteres']);
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -24,9 +36,11 @@
               <li class="nav-item">
                 <a class="nav-link" href="NosotrosPrueba.php">NOSOTROS</a>
               </li>
+              <!--
               <li class="nav-item">
                 <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">LOGIN</a>
               </li>
+                -->
               <li class="nav-item">
                 <a class="nav-link" href="FormularioPrueba.php">REGISTRO</a>
               </li>
@@ -34,63 +48,39 @@
           </div>
         </div>
     </nav>
-    <!-- LOGIN MODAL -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="staticBackdropLabel">¡Bienvenido!</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                  <div class="container text-center my-5 bg-success-subtle border border-5 border-success rounded-4">
-                      <form class="row" novalidate>
-                          <div class="col-12">
-                              <label for="userInput" class="form-label">Usuario</label>
-                              <input type="text" class="form-control focus-ring focus-ring-success text-center" id="userInput" placeholder="Escribe tu usuario">
-                          </div>
-                          <div class="col-12">
-                              <label for="passwordInput" class="form-label">Contraseña</label>
-                              <input type="password" class="form-control focus-ring focus-ring-success text-center" id="passwordInput" placeholder="Escribe tu contraseña">
-                          </div>
-                          <div class="col-12">
-                              <button type="submit" class="btn btn-success my-3"><strong>Enviar</strong></button>
-                          </div>
-                      </form>
-                  </div>
-              </div>
-              <div class="modal-footer">
-                <span>¿No estás registrado aún? <a class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="FormularioPrueba.php">Registrate.</a></span>
-              </div>
-          </div>
-      </div>
-  </div>
+
+    <div class="container my-5 text-center">
+        <h1>Actualizar Usuario ID: <?php echo $row['id'] ?></h1>
+    </div>
+
     <!-- FORMULARIO DE LA PAGINA -->
+
     <div class="container my-5 bg-success-subtle border border-5 border-success rounded-4">
-        <form action="insertarFormulario.php" method="POST" class="row needs-validation" novalidate>
+        <form action="update.php" method="POST" class="row needs-validation" novalidate>
+            <input type="hidden" name="id" value="<?php echo $row['id'];?>">
             <div class="col-6">
                 <label for="nameInput" class="form-label">Nombre</label>
-                <input type="text" class="form-control focus-ring focus-ring-success" name="nombre" id="nameInput" placeholder="Escribe tu nombre" required>
+                <input type="text" class="form-control focus-ring focus-ring-success" name="nombre" id="nameInput" placeholder="Escribe tu nombre" value="<?php echo $row['nombre'];?>" required>
             </div>
             <div class="col-6">
                 <label for="surnameInput" class="form-label">Apellido</label>
-                <input type="text" class="form-control focus-ring focus-ring-success" name="apellido" id="surnameInput" placeholder="Escribe tu apellido" required>
+                <input type="text" class="form-control focus-ring focus-ring-success" name="apellido" id="surnameInput" placeholder="Escribe tu apellido" value="<?php echo $row['apellido'];?>" required>
             </div>
             <div class="col-6">
                 <label for="userInput" class="form-label">Usuario</label>
-                <input type="text" class="form-control focus-ring focus-ring-success" name="alias" id="userInput" placeholder="Escribe tu usuario" required>
+                <input type="text" class="form-control focus-ring focus-ring-success" name="alias" id="userInput" placeholder="Escribe tu usuario" value="<?php echo $row['alias'];?>" required>
             </div>
             <div class="col-6">
                 <label for="passwordInput" class="form-label">Contraseña</label>
-                <input type="password" class="form-control focus-ring focus-ring-success" name="clave" id="passwordInput" placeholder="Escribe tu contraseña" required>
+                <input type="text" class="form-control focus-ring focus-ring-success" name="clave" id="passwordInput" placeholder="Escribe tu contraseña" value="<?php echo $row['clave'];?>" required>
             </div>
             <div class="col-12">
                 <label for="emailInput" class="form-label">Email</label>
-                <input type="email" class="form-control focus-ring focus-ring-success" name="email" id="emailInput" placeholder="Escribe tu email" required>
+                <input type="email" class="form-control focus-ring focus-ring-success" name="email" id="emailInput" placeholder="Escribe tu email" value="<?php echo $row['email'];?>" required>
             </div>
             <div class="col-12">
                 <label for="addressInput" class="form-label">Dirección</label>
-                <input type="text" class="form-control focus-ring focus-ring-success" name="direccion" id="addressInput" placeholder="Escribe tu primera dirección" required>
+                <input type="text" class="form-control focus-ring focus-ring-success" name="direccion" id="addressInput" placeholder="Escribe tu primera dirección" value="<?php echo $row['direccion'];?>" required>
             </div>
             <div class="col-12">
                 <label class="form-label">Dirección 2</label>
@@ -98,28 +88,28 @@
             </div>
             <div class="col-4">
                 <label for="" class="form-label">Fecha de nacimiento</label>
-                <input type="date" class="form-control focus-ring focus-ring-success" name="fechaNacimiento" id="dateInput" required>
+                <input type="date" class="form-control focus-ring focus-ring-success" name="fechaNacimiento" id="dateInput" value="<?php echo $row['fechaNacimiento'];?>" required>
             </div>
             <div class="col-4">
                 <label for="ageInput" class="form-label">Edad</label>
-                <input type="number" class="form-control focus-ring focus-ring-success" name="edad" id="ageInput" placeholder="Escribe tu edad" required>
+                <input type="number" class="form-control focus-ring focus-ring-success" name="edad" id="ageInput" placeholder="Escribe tu edad" value="<?php echo $row['edad'];?>" required>
             </div>
             <div class="col-4">
                 <label class="form-label">Sexo</label>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="sexo" value="Masculino" required>
+                    <input class="form-check-input" type="radio" name="sexo" value="Masculino" <?php if($row['sexo'] == 'Masculino') echo "checked";?> required>
                     <label class="form-check-label" for="sexo">
                       Masculino
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="sexo" value="Femenino" required>
+                    <input class="form-check-input" type="radio" name="sexo" value="Femenino" <?php if($row['sexo'] == 'Femenino') echo "checked";?> required>
                     <label class="form-check-label" for="sexo">
                       Femenino
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="sexo" value="Otro" required>
+                    <input class="form-check-input" type="radio" name="sexo" value="Otro" <?php if($row['sexo'] == 'Otro') echo "checked";?> required>
                     <label class="form-check-label" for="sexo">
                       Otro
                     </label>
@@ -128,25 +118,25 @@
             <div class="col-6">
                 <label class="form-label">Área de Interés</label>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="opcion[]" value="Fantasía" id="flexCheck1">
+                    <input class="form-check-input" type="checkbox" name="opcion[]" value="Fantasía" id="flexCheck1" <?php if(in_array("Fantasía",$intereses)) echo "checked";?>>
                     <label class="form-check-label" for="flexCheck1">
                       Fantasía
                     </label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="opcion[]" value="Terror" id="flexCheck2" >
+                    <input class="form-check-input" type="checkbox" name="opcion[]" value="Terror" id="flexCheck2" <?php if(in_array("Terror",$intereses)) echo "checked";?>>
                     <label class="form-check-label" for="flexCheck2">
                       Terror
                     </label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="opcion[]" value="Ciencia Ficción" id="flexCheck3" >
+                    <input class="form-check-input" type="checkbox" name="opcion[]" value="Ciencia Ficción" id="flexCheck3" <?php if(in_array("Ciencia Ficción",$intereses)) echo "checked";?>>
                     <label class="form-check-label" for="flexCheck3">
                       Ciencia Ficción
                     </label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="opcion[]" value="Misterio" id="flexCheck4" >
+                    <input class="form-check-input" type="checkbox" name="opcion[]" value="Misterio" id="flexCheck4" <?php if(in_array("Misterio",$intereses)) echo "checked";?>>
                     <label class="form-check-label" for="flexCheck4">
                       Misterio
                     </label>
@@ -155,24 +145,19 @@
             <div class="col-6">
                 <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">Descripción</label>
-                    <textarea class="form-control" id="descriptionInput" rows="3" name="descripcion" placeholder="Escribe una descripción que te gustaría compartir"></textarea>
+                    <textarea class="form-control" id="descriptionInput" rows="3" name="descripcion" placeholder="Escribe una descripción que te gustaría compartir"><?php echo $row['descripcion'];?></textarea>
                   </div>
-            </div>
-            <div class="col-5"></div>
-            <div class="col-7">
-                <div class="form-check">
-                    <label for="termsCheck" class="form-check-label"><strong>Acepto los términos</strong></label>
-                    <input type="checkbox" class="form-check-input" id="termsCheck" required>
-                </div>
             </div>
             <div class="col-12"><br></div>
             <div class="col-5"></div>
             <div class="col-7 mb-4">
-                <button type="submit" class="btn btn-success"><strong>Registrarse</strong></button>
+                <a href="PanelDeControl.php" class="btn btn-danger"><strong>Cancelar</strong></a>
+                <button type="submit" class="btn btn-success"><strong>Modificar</strong></button>
             </div>
         </form>
     </div>
 
+    
     <footer class="bg-body-tertiary text-center text-lg-start">
         <div class="container p-4">
           <div class="row">

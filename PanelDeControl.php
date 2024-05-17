@@ -1,3 +1,19 @@
+<?php
+    include("conexion.php");
+    $con=conectar();
+    if(isset($_POST['nombre'])) {
+        $nombre=$_POST['nombre'];
+        $sql = "SELECT * FROM usuario WHERE nombre LIKE '$nombre%'";
+        $query = mysqli_query($con, $sql);
+    }
+    else{
+        $sql="SELECT * FROM usuario";
+        $query=mysqli_query($con,$sql);
+    }
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -24,9 +40,11 @@
               <li class="nav-item">
                 <a class="nav-link" href="NosotrosPrueba.php">NOSOTROS</a>
               </li>
+              <!--
               <li class="nav-item">
                 <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">LOGIN</a>
               </li>
+                -->
               <li class="nav-item">
                 <a class="nav-link" href="FormularioPrueba.php">REGISTRO</a>
               </li>
@@ -34,40 +52,17 @@
           </div>
         </div>
     </nav>
-    <!-- LOGIN MODAL -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="staticBackdropLabel">¡Bienvenido!</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                  <div class="container text-center my-5 bg-success-subtle border border-5 border-success rounded-4">
-                      <form class="row" novalidate>
-                          <div class="col-12">
-                              <label for="userInput" class="form-label">Usuario</label>
-                              <input type="text" class="form-control focus-ring focus-ring-success text-center" id="userInput" placeholder="Escribe tu usuario">
-                          </div>
-                          <div class="col-12">
-                              <label for="passwordInput" class="form-label">Contraseña</label>
-                              <input type="password" class="form-control focus-ring focus-ring-success text-center" id="passwordInput" placeholder="Escribe tu contraseña">
-                          </div>
-                          <div class="col-12">
-                              <button type="submit" class="btn btn-success my-3"><strong>Enviar</strong></button>
-                          </div>
-                      </form>
-                  </div>
-              </div>
-              <div class="modal-footer">
-                <span>¿No estás registrado aún? <a class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="FormularioPrueba.php">Registrate.</a></span>
-              </div>
-          </div>
-      </div>
-  </div>
+
+    <div class="container my-5 text-center">
+        <h1>Panel de control de usuarios</h1>
+    </div>
+
     <!-- FORMULARIO DE LA PAGINA -->
+
+
+
     <div class="container my-5 bg-success-subtle border border-5 border-success rounded-4">
-        <form action="insertarFormulario.php" method="POST" class="row needs-validation" novalidate>
+        <form action="insertarPanel.php" method="POST" class="row needs-validation" novalidate>
             <div class="col-6">
                 <label for="nameInput" class="form-label">Nombre</label>
                 <input type="text" class="form-control focus-ring focus-ring-success" name="nombre" id="nameInput" placeholder="Escribe tu nombre" required>
@@ -158,20 +153,94 @@
                     <textarea class="form-control" id="descriptionInput" rows="3" name="descripcion" placeholder="Escribe una descripción que te gustaría compartir"></textarea>
                   </div>
             </div>
-            <div class="col-5"></div>
-            <div class="col-7">
-                <div class="form-check">
-                    <label for="termsCheck" class="form-check-label"><strong>Acepto los términos</strong></label>
-                    <input type="checkbox" class="form-check-input" id="termsCheck" required>
-                </div>
-            </div>
             <div class="col-12"><br></div>
             <div class="col-5"></div>
             <div class="col-7 mb-4">
-                <button type="submit" class="btn btn-success"><strong>Registrarse</strong></button>
+                <button type="submit" class="btn btn-success"><strong>Agregar usuario</strong></button>
             </div>
         </form>
     </div>
+
+
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-4"></div>
+            <form class="col-4 bg-success-subtle border-success rounded-4 border border-1" action="PanelDeControl.php" method="POST">
+                <input class="form-control my-2" type="text" id="name" name="nombre" placeholder="Buscar por nombre">
+                <a class="btn btn-primary my-2" href="PanelDeControl.php">Reset</a>
+                <button class="btn btn-primary my-2" type="submit">Buscar</button>
+            </form>
+            <div class="col-4"></div>
+        </div>
+    </div>
+
+    <!-- Panel de control -->
+    <div class="my-5">
+        <div class="col">
+            <table class="table">
+                <thead class="table-success table-striped">
+                    <tr>
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                        <th>APELLIDO</th>
+                        <th>ALIAS</th>
+                        <th>CLAVE</th>
+                        <th>EMAIL</th>
+                        <th>DIRECCION</th>
+                        <th>NACIMIENTO</th>
+                        <th>EDAD</th>
+                        <th>SEXO</th>
+                        <th>INTERES</th>
+                        <th>DESCRIPCION</th>
+                        <th>OPCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        while($row=mysqli_fetch_array($query)){ 
+                    ?>
+                        <tr>
+                            <th><?php echo $row['id']?></th>
+                            <th><?php echo $row['nombre']?></th>
+                            <th><?php echo $row['apellido']?></th>
+                            <th><?php echo $row['alias']?></th>
+                            <th><?php echo $row['clave']?></th>
+                            <th><?php echo $row['email']?></th>
+                            <th><?php echo $row['direccion']?></th>
+                            <th><?php echo $row['fechaNacimiento']?></th>
+                            <th><?php echo $row['edad']?></th>
+                            <th><?php echo $row['sexo']?></th>
+                            <th><?php echo $row['areaInteres']?></th>
+                            <th><?php echo $row['descripcion']?></th>
+                            <th>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ModalEliminacion-<?php echo $row['id'];?>">
+                                    Eliminar
+                                </button>
+                                <div class="modal fade" id="ModalEliminacion-<?php echo $row['id'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">¿Está seguro que desea eliminar el usuario seleccionado?</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                <a class="btn btn-danger" href="delete.php?id=<?php echo $row['id']?>">Eliminar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="actualizar.php?id=<?php echo $row['id'];?>" class="btn btn-info">Editar</a>
+                            </th>
+                        </tr>
+                    <?php
+                        }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 
     <footer class="bg-body-tertiary text-center text-lg-start">
         <div class="container p-4">
