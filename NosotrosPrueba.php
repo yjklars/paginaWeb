@@ -1,3 +1,37 @@
+<?php
+include("conexion.php");
+session_start();
+$con=conectar();
+
+if($_SERVER['REQUEST_METHOD']==='POST'){
+  $alias=$_POST['alias'];
+  $clave=$_POST['clave'];
+
+  $sql="SELECT * FROM usuario WHERE alias='$alias' AND clave='$clave'";
+  $query=mysqli_query($con,$sql);
+
+  if(mysqli_num_rows($query)>0){
+    $row=mysqli_fetch_array($query);
+    $_SESSION['alias']=$row['alias'];
+    $_SESSION['nombre']=$row['nombre'];
+    $_SESSION['apellido']=$row['apellido'];
+    if(isset($_SERVER['HTTP_REFERER'])){
+      $url=$_SERVER['HTTP_REFERER'];
+    }
+    else{
+      $url="IndexPrueba.php";
+    }
+    header("Location: $url");
+    exit();
+  }
+  else{
+    $error="Alias o contraseña incorrectos";
+  }
+
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,7 +48,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav me-auto">
               <li class="nav-item">
                 <a class="nav-link" href="#"><strong>Convergencia Literata</strong></a>
               </li>
@@ -22,49 +56,66 @@
                 <a class="nav-link" href="IndexPrueba.php">INICIO</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="NosotrosPrueba.php">NOSOTROS</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">LOGIN</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="FormularioPrueba.php">REGISTRO</a>
+                <a class="nav-link" href="NosotrosPrueba.php"><strong>NOSOTROS</strong></a>
               </li>
             </ul>
+            <?php if(!isset($_SESSION['alias'])){ ?>
+            <div class="d-flex">
+              <div class="p-2"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">LOGIN</a></div>
+              <div class="p-2"><a class="nav-link" href="FormularioPrueba.php">REGISTRO</a></div>
+            </div>
+            <?php }?>
+            <?php if(isset($_SESSION['alias'])){ ?>
+              <div class="d-flex">
+                <div class="p-2"><a class="nav-link" href="#"><strong><?php echo $_SESSION['nombre'].' '.$_SESSION['apellido'];?></strong></a></div>
+                <div class="p-2"><a class="nav-link" href="logout.php">LOGOUT</a></div>
+              </div>
+            <?php }?>
           </div>
         </div>
     </nav>
 
+    <!-- Modal de logueo -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">¡Bienvenido!</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="container text-center my-5 bg-success-subtle border border-5 border-success rounded-4">
-                        <form class="row">
-                            <div class="col-12">
-                                <label for="userInput" class="form-label">Usuario</label>
-                                <input type="text" class="form-control focus-ring focus-ring-success text-center" id="userInput" placeholder="Escribe tu usuario">
-                            </div>
-                            <div class="col-12">
-                                <label for="passwordInput" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control focus-ring focus-ring-success text-center" id="passwordInput" placeholder="Escribe tu contraseña">
-                            </div>
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-success my-3"><strong>Enviar</strong></button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                  <span>¿No estás registrado aún? <a class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="FormularioPrueba.php">Registrate.</a></span>
-                </div>
-            </div>
-        </div>
-    </div>
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel">Login</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <div class="container text-center"><h4><strong>¡Bienvenido!</strong></h4></div>
+                  <div class="container text-center my-5 bg-success-subtle border border-5 border-success rounded-4">
+                      <form class="row needs-validation" method="POST" novalidate>
+                          <div class="col-12">
+                              <label for="userInput" class="form-label">Usuario</label>
+                              <input type="text" class="form-control focus-ring focus-ring-success text-center" id="userInput" name="alias" placeholder="Escribe tu usuario" required>
+                          </div>
+                          <div class="col-12">
+                              <label for="passwordInput" class="form-label">Contraseña</label>
+                              <input type="password" class="form-control focus-ring focus-ring-success text-center" id="passwordInput" name="clave" placeholder="Escribe tu contraseña" required>
+                          </div>
+                          
+                          <div class="col-12">
+                              <button type="submit" class="btn btn-success my-3"><strong>Enviar</strong></button>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <span>¿No estás registrado aún? <a class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="FormularioPrueba.php">Registrate.</a></span>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <?php if(isset($error)){?>
+  <div class="alert alert-danger text-center" role="alert">
+      <strong><?php echo $error; ?></strong>
+  </div>
+  <?php }?>
+  
+  
 
     <div class="container-sm my-3 mb-3 d-none d-sm-block">
         <div id="carouselExample" class="carousel slide">
@@ -285,9 +336,28 @@
         </div>
       </footer>
 
-
-
-
     <script src="Bootstrap/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (() => {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+          form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+          }, false)
+        })
+      })()
+    </script>
 </body>
 </html>

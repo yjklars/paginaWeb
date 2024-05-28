@@ -14,7 +14,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav me-auto">
               <li class="nav-item">
                 <a class="nav-link" href="#"><strong>Convergencia Literata</strong></a>
               </li>
@@ -24,13 +24,15 @@
               <li class="nav-item">
                 <a class="nav-link" href="NosotrosPrueba.php">NOSOTROS</a>
               </li>
+              <!--
               <li class="nav-item">
                 <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">LOGIN</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="FormularioPrueba.php">REGISTRO</a>
-              </li>
+              -->
             </ul>
+            <div class="d-flex">
+                <a class="nav-link" href="FormularioPrueba.php"><strong>REGISTRO</strong></a>
+            </div>
           </div>
         </div>
     </nav>
@@ -66,6 +68,12 @@
       </div>
   </div>
     <!-- FORMULARIO DE LA PAGINA -->
+
+    <div class="container text-center mt-5">
+      <h1>Formulario de registro</h1>
+    </div>
+
+
     <div class="container my-5 bg-success-subtle border border-5 border-success rounded-4">
         <form action="insertarFormulario.php" method="POST" class="row needs-validation" novalidate>
             <div class="col-6">

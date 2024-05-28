@@ -45,9 +45,11 @@
                 <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">LOGIN</a>
               </li>
                 -->
+              <!--
               <li class="nav-item">
                 <a class="nav-link" href="FormularioPrueba.php">REGISTRO</a>
               </li>
+              -->
             </ul>
           </div>
         </div>
@@ -288,6 +290,6 @@
           }, false)
         })
       })()
-</script>
+    </script>
 </body>
 </html>
