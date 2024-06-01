@@ -84,7 +84,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
               </div>
               <div class="modal-body">
                   <div class="container text-center"><h4><strong>¡Bienvenido!</strong></h4></div>
-                  <div class="container text-center my-5 bg-success-subtle border border-5 border-success rounded-4">
+                  <div class="container text-center mt-5 mb-1 bg-success-subtle border border-5 border-success rounded-4">
                       <form class="row needs-validation" method="POST" novalidate>
                           <div class="col-12">
                               <label for="userInput" class="form-label">Usuario</label>
@@ -100,6 +100,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
                           </div>
                       </form>
                   </div>
+                  <span>¿Olvidaste tu contraseña? <a class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="RecuperarPassword.php">Recuperar contraseña.</a></span>
               </div>
               <div class="modal-footer">
                 <span>¿No estás registrado aún? <a class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="FormularioPrueba.php">Registrate.</a></span>
