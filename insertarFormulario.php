@@ -19,7 +19,7 @@ if(isset($_POST['opcion'])){
     $areaInteres=implode(',',$_POST['opcion']);
 }
 //echo("INSERT INTO usuario VALUES ('$nombre','$apellido','$alias','$clave','$email','$direccion','$fechaNacimiento','$edad','$sexo','$areaInteres','$descripcion')");
-$sql="INSERT INTO usuario (nombre,apellido,alias,clave,email,direccion,fechaNacimiento,edad,sexo,areaInteres,descripcion) VALUES('$nombre','$apellido','$alias','$clave','$email','$direccion','$fechaNacimiento','$edad','$sexo','$areaInteres','$descripcion')";
+$sql="INSERT INTO usuario (nombre,apellido,alias,clave,email,direccion,fechaNacimiento,edad,sexo,areaInteres,descripcion,adm) VALUES('$nombre','$apellido','$alias','$clave','$email','$direccion','$fechaNacimiento','$edad','$sexo','$areaInteres','$descripcion',0)";
 $query=mysqli_query($con,$sql);
 
 

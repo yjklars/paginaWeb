@@ -148,7 +148,23 @@ $intereses=explode(',',$row['areaInteres']);
                     <textarea class="form-control" id="descriptionInput" rows="3" name="descripcion" placeholder="Escribe una descripción que te gustaría compartir"><?php echo $row['descripcion'];?></textarea>
                   </div>
             </div>
-            <div class="col-12"><br></div>
+            <div class="col-5"></div>
+            <div class="col-7">
+                <label class="form-label">Administrador:</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="adm" value="1" <?php if($row['adm'] == '1') echo "checked";?> required>
+                    <label class="form-check-label" for="adm">
+                      Si
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="adm" value="0" <?php if($row['adm'] == '0') echo "checked";?> required>
+                    <label class="form-check-label" for="adm">
+                      No
+                    </label>
+                </div>
+              <br>
+            </div>
             <div class="col-5"></div>
             <div class="col-7 mb-4">
                 <a href="PanelDeControl.php" class="btn btn-danger"><strong>Cancelar</strong></a>

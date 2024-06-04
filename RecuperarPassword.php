@@ -116,7 +116,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
                 <label for="emailInput" class="form-label my-2">Email</label>
                 <input type="email" class="form-control focus-ring focus-ring-success" name="email" id="emailInput" placeholder="Ingrese su email asociado al usuario" required>
                 <label for="userInput" class="form-label my-2">Usuario</label>
-                <input type="password" class="form-control focus-ring focus-ring-success mb-3" name="alias" id="userInput" placeholder="Ingrese su usuario" required>
+                <input type="text" class="form-control focus-ring focus-ring-success mb-3" name="alias" id="userInput" placeholder="Ingrese su usuario" required>
                 <label for="passwordInput" class="form-label my-2">Nueva contraseña</label>
                 <input type="password" class="form-control focus-ring focus-ring-success mb-3" name="clave" id="passwordInput" placeholder="Ingrese su nueva contraseña" required>
             </div>

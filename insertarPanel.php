@@ -14,12 +14,13 @@ $edad=$_POST['edad'];
 $sexo=$_POST['sexo'];
 $areaInteres="";
 $descripcion=$_POST['descripcion'];
+$adm=$_POST['adm'];
 
 if(isset($_POST['opcion'])){
     $areaInteres=implode(",",$_POST['opcion']);
 }
 //echo("INSERT INTO usuario VALUES ('$nombre','$apellido','$alias','$clave','$email','$direccion','$fechaNacimiento','$edad','$sexo','$areaInteres','$descripcion')");
-$sql="INSERT INTO usuario (nombre,apellido,alias,clave,email,direccion,fechaNacimiento,edad,sexo,areaInteres,descripcion) VALUES('$nombre','$apellido','$alias','$clave','$email','$direccion','$fechaNacimiento','$edad','$sexo','$areaInteres','$descripcion')";
+$sql="INSERT INTO usuario (nombre,apellido,alias,clave,email,direccion,fechaNacimiento,edad,sexo,areaInteres,descripcion,adm) VALUES('$nombre','$apellido','$alias','$clave','$email','$direccion','$fechaNacimiento','$edad','$sexo','$areaInteres','$descripcion','$adm')";
 $query=mysqli_query($con,$sql);
 
 

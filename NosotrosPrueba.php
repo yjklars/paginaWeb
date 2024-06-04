@@ -15,6 +15,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
     $_SESSION['alias']=$row['alias'];
     $_SESSION['nombre']=$row['nombre'];
     $_SESSION['apellido']=$row['apellido'];
+    $_SESSION['adm']=$row['adm'];
     if(isset($_SERVER['HTTP_REFERER'])){
       $url=$_SERVER['HTTP_REFERER'];
     }
@@ -58,6 +59,11 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
               <li class="nav-item">
                 <a class="nav-link" href="NosotrosPrueba.php"><strong>NOSOTROS</strong></a>
               </li>
+              <?php if(isset($_SESSION['alias'])){ if($_SESSION['adm'] == '1'){ ?>
+              <li class="nav-item">
+                <a class="nav-link" href="PanelDeControl.php">Panel de Control</a>
+              </li>
+              <?php }}?>
             </ul>
             <?php if(!isset($_SESSION['alias'])){ ?>
             <div class="d-flex">

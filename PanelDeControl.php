@@ -155,7 +155,23 @@
                     <textarea class="form-control" id="descriptionInput" rows="3" name="descripcion" placeholder="Escribe una descripción que te gustaría compartir"></textarea>
                   </div>
             </div>
-            <div class="col-12"><br></div>
+            <div class="col-5"></div>
+            <div class="col-7">
+                <label class="form-label">Administrador:</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="adm" value="1" required>
+                    <label class="form-check-label" for="adm">
+                      Si
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="adm" value="0" required>
+                    <label class="form-check-label" for="adm">
+                      No
+                    </label>
+                </div>
+              <br>
+            </div>
             <div class="col-5"></div>
             <div class="col-7 mb-4">
                 <button type="submit" class="btn btn-success"><strong>Agregar usuario</strong></button>
@@ -194,6 +210,7 @@
                         <th>SEXO</th>
                         <th>INTERES</th>
                         <th>DESCRIPCION</th>
+                        <th>ADMINISTRADOR</th>
                         <th>OPCIONES</th>
                     </tr>
                 </thead>
@@ -214,6 +231,7 @@
                             <th><?php echo $row['sexo']?></th>
                             <th><?php echo $row['areaInteres']?></th>
                             <th><?php echo $row['descripcion']?></th>
+                            <th><?php echo $row['adm']?></th>
                             <th>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ModalEliminacion-<?php echo $row['id'];?>">
                                     Eliminar
